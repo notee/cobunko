@@ -22,7 +22,7 @@ post '/search' => sub {
     my $isbn   = $c->req->param('isbn');
 
     $c->db->search(+{ title => $title, author => $author, isbn => $isbn });
-    return $c->render( 'conbunko/index.tx', +{ title => $title } );
+    return $c->render( 'cobunko/index.tx', +{ title => $title } );
 };
 
 post '/register' => sub {
@@ -33,7 +33,7 @@ post '/register' => sub {
     my $isbn   = $c->req->param('isbn');
 
     my $book = $c->db->register(+{ title => $title, author => $author, isbn => $isbn });
-    return $c->render( 'conbunko/index.tx', $book );
+    return $c->render( 'cobunko/index.tx', $book );
 };
 
 1;
