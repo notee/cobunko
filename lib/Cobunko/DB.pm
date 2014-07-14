@@ -16,7 +16,7 @@ sub search {
 
 sub register {
     my ( $self, $info ) = @_;
-    my ( $title, $author, $isbn) = $info{qw/title author isbn/};
+    my ( $title, $author, $isbn) = @{$info}{qw/title author isbn/};
     return;
 };
 
