@@ -10,7 +10,7 @@ __PACKAGE__->load_plugin('Pager');
 
 sub search {
     my ( $self, $info ) = @_;
-    my ( $title, $author, $isbn) = $info{qw/title author isbn/};
+    my ( $title, $author, $isbn) = @{$info}{qw/title author isbn/};
     return +{ title => $title, author => $author, isbn => $isbn };
 };
 
