@@ -9,21 +9,31 @@ any '/' => sub {
     my $counter = $c->session->get('counter') || 0;
     $counter++;
     $c->session->set('counter' => $counter);
-    return $c->render('index.tx', {
+    return $c->render('cobunko/index.tx', {
         counter => $counter,
     });
 };
 
-post '/reset_counter' => sub {
+post '/search' => sub {
     my $c = shift;
-    $c->session->remove('counter');
-    return $c->redirect('/');
+
+    my $title  = $c->req->param('title');
+    my $author = $c->req->param('author');
+    my $isbn   = $c->req->param('isbn');
+
+    $c->db->search(+{ title => $title, author => $author, isbn => $isbn });
+    return $c->render( 'conbunko/index.tx', +{ title => $title } );
 };
 
-post '/account/logout' => sub {
-    my ($c) = @_;
-    $c->session->expire();
-    return $c->redirect('/');
+post '/register' => sub {
+    my $c = shift;
+
+    my $title  = $c->req->param('title');
+    my $author = $c->req->param('author');
+    my $isbn   = $c->req->param('isbn');
+
+    my $book = $c->db->register(+{ title => $title, author => $author, isbn => $isbn });
+    return $c->render( 'conbunko/index.tx', $book );
 };
 
 1;
