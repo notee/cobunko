@@ -12,12 +12,12 @@
     }
 </style>
 
-:if $is_register_success {
+: if $is_register_success {
         <h1 style="text-align: center;">Register successed./h1>
-:}
+: }
 
 
-:if $has_search_result {
+: if $has_search_result {
 
     <hr />
 
@@ -36,12 +36,12 @@
                         <td><: $book.isbn :></td>
                         <td><: $book.url :></td>
                     </tr>
-                }
+                : }
             </table>
         </div>
     </div>
 
-:}
+: }
 
 <hr />
 
@@ -76,4 +76,4 @@
 </div>
 
 <hr />
-}
+: }
