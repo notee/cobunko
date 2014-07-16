@@ -17,23 +17,23 @@ any '/' => sub {
 post '/search' => sub {
     my $c = shift;
 
-    my $title  = $c->req->param('title');
-    my $author = $c->req->param('author');
-    my $isbn   = $c->req->param('isbn');
+    my $user_id = $c->req->param('user_id');
 
-    $c->db->search(+{ title => $title, author => $author, isbn => $isbn });
-    return $c->render( 'cobunko/index.tx', +{ title => $title } );
+    my $books = $c->db->get_books_by_user_id($user_id);
+
+    map { $_->{url} = "http://www.isbnsearch.org/isbn/" . $_->{isbn} } @$books;
+    return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => $books } );
 };
 
 post '/register' => sub {
     my $c = shift;
 
+    my $user_id = $c->req->param('user_id');
     my $title  = $c->req->param('title');
-    my $author = $c->req->param('author');
     my $isbn   = $c->req->param('isbn');
 
-    my $book = $c->db->register(+{ title => $title, author => $author, isbn => $isbn });
-    return $c->render( 'cobunko/index.tx', $book );
+    my $is_register_success = $c->db->register(+{ user_id => $user_id, title => $title, isbn => $isbn });
+    return $c->render( 'cobunko/index.tx', +{ is_register_success => $is_register_success });
 };
 
 1;

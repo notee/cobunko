@@ -12,17 +12,45 @@
     }
 </style>
 
+:if $is_register_success {
+        <h1 style="text-align: center;">Register successed./h1>
+}
+
+
+:if $has_search_result {
+
+    <hr />
+
+    <div class="row">
+        <h1 style="text-align: center;">Your books.</h1>
+        <div>
+            <table>
+                <tr>
+                    <td>title</td>
+                    <td>isbn</td>
+                    <td>link</td>
+                </tr>
+                : for $books->$book {
+                    <tr>
+                        <td><: $book.title :></td>
+                        <td><: $book.isbn :></td>
+                        <td><: $book.url :></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+}
 <hr />
 
 <div class="row">
     <h1 style="text-align: center;">Search the books.</h1>
     <div>
-        please input information of book you need.
+        please input user_id you want to get list.
         <form method="post" action="/search">
             <ul>
-            <li>title : <input type="text" name="title"></li>
-            <li>author : <input type="text" name="author"></li>
-            <li>ISBN : <input type="text" name="ISBN"></li>
+            <li>user_id : <input type="text" name="user_id"></li>
             </ul>
             <input type="submit" name="submit" value="そーしん">
         </form>
@@ -34,11 +62,11 @@
 <div class="row">
     <h1 style="text-align: center;">Register the book.</h1>
     <div>
-        please input information of book.
+        please input your user_id and information of book.
         <form method="post" action="/register">
             <ul>
+            <li>your user_id : <input type="text" name="user_id"></li>
             <li>title : <input type="text" name="title"></li>
-            <li>author : <input type="text" name="author"></li>
             <li>ISBN : <input type="text" name="ISBN"></li>
             </ul>
             <input type="submit" name="submit" value="そーしん">
