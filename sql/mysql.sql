@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS books (
-    id           INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    isbn         VARCHAR(255)
-    name         VARCHAR(255)
+    user_id     INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title       VARCHAR(255),
+    isbn        BIGINT
 );
