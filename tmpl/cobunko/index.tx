@@ -14,7 +14,7 @@
 
 :if $is_register_success {
         <h1 style="text-align: center;">Register successed./h1>
-}
+:}
 
 
 :if $has_search_result {
@@ -76,3 +76,4 @@
 </div>
 
 <hr />
+}
