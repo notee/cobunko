@@ -19,7 +19,7 @@ sub register {
     my ( $user_id, $title, $isbn ) = @{$info}{qw/user_id title isbn/};
     eval {
         $self->insert('books', +{ user_id => $user_id, title => $title, isbn => $isbn });
-    }
+    };
     if ($@) {
         return 0;
     }
