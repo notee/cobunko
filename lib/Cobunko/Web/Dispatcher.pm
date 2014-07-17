@@ -21,9 +21,9 @@ post '/search' => sub {
 
     my $books = $c->db->get_books_by_user_id($user_id);
 
-    for (@$books) {
-        $_->{url} = "http://www.isbnsearch.org/isbn/" . $_->{isbn};
-    }
+#    for (@$books) {
+#        $_->{url} = "http://www.isbnsearch.org/isbn/" . $_->{isbn};
+#    }
     return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => $books } );
 };
 
