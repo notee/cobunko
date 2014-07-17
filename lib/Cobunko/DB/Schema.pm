@@ -9,7 +9,7 @@ base_row_class 'Cobunko::DB::Row';
 
 table {
     name 'books';
-    pk 'user_id';
+    pk 'user_id, isbn';
     columns qw(user_id title isbn);
 };
 
