@@ -6,7 +6,7 @@ use JSON::Syck qw(Load);
 use LWP::UserAgent;
 use URI;
 
-sub get_book_by_isbn {
+sub get_by_isbn {
     my ($self, $isbn) = @_;
     my $rakuten_search_result = get_from_rakuten(+{isbn => $isbn});
     return $rakuten_search_result->{Items}->[0]->{Item};
