@@ -25,7 +25,7 @@ post '/search' => sub {
     my @result;
     for (@$books) {
         my $book = Cobunko::Model::Object::Book->get_by_isbn($_->{isbn});
-        $book->{url} = "http://www.isbnsearch.org/isbn/" . "$_->{isbn}";
+        $book->{url} = "http://www.isbnsearch.org/isbn/" . "$_->{isbn}"; #TODO:ここuninitialized valueってる
         push @result, $book;
     }
     return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => \@result } );
