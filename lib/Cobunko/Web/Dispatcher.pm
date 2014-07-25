@@ -24,7 +24,7 @@ post '/search' => sub {
 
     my @result;
     for (@$books) {
-        my $book = Ganesha::Model::Object::Book->get_by_isbn($_->{isbn});
+        my $book = Cobunko::Model::Object::Book->get_by_isbn($_->{isbn});
         $book->{url} = "http://www.isbnsearch.org/isbn/" . $_->{isbn};
         push @result, $book;
     }
