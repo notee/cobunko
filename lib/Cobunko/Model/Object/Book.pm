@@ -31,8 +31,10 @@ sub get_from_rakuten {
 
     my $ua = LWP::UserAgent->new;
     my $res = $ua->get($uri);
+    print $res->content;
+    my $content = Load($res->content);
 
-    return Load($res->content);
+    return $content;
 }
 
 1;
