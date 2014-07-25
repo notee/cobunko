@@ -34,7 +34,7 @@
                     <tr>
                         <td><: $book.title :></td>
                         <td><: $book.isbn :></td>
-                        <td><a href= "http://www.isbnsearch.org/isbn/<: $book.isbn :>">リンク</td>
+                        <td><a href= "<: $book.url :>">リンク</td>
                     </tr>
                 : }
             </table>

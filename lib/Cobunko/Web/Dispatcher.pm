@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use utf8;
 use Amon2::Web::Dispatcher::RouterBoom;
+use Cobunko::Model::Object::Book;
 
 any '/' => sub {
     my ($c) = @_;
@@ -21,10 +22,13 @@ post '/search' => sub {
 
     my $books = $c->db->get_books_by_user_id($user_id);
 
-#    for (@$books) {
-#        $_->{url} = "http://www.isbnsearch.org/isbn/" . $_->{isbn};
-#    }
-    return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => $books } );
+    my @result;
+    for (@$books) {
+        my $book = Ganesha::Model::Object::Book->get_by_isbn($_->{isbn});
+        $book->{url} = "http://www.isbnsearch.org/isbn/" . $_->{isbn};
+        push @result, $book;
+    }
+    return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => \@result } );
 };
 
 post '/register' => sub {
