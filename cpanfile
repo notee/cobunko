@@ -2,6 +2,7 @@ requires 'Amon2', '6.02';
 requires 'DBD::SQLite', '1.33';
 requires 'HTML::FillInForm::Lite', '1.11';
 requires 'HTTP::Session2', '0.04';
+requires 'LWP::Protocol::https', '6.04';
 requires 'JSON', '2.50';
 requires 'YAML::Syck', '1.27';
 requires 'Module::Functions', '2';

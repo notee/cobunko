@@ -18,15 +18,15 @@ sub get_from_rakuten {
     my $uri = URI->new('https://app.rakuten.co.jp/services/api/BooksBook/Search/20130522');
     $uri->query_form(
         applicationId   => '1049270485777658554',
-        author          => $params->{author},
-        title           => $params->{title},
-        size            => $params->{size},
-        publisherName   => $params->{publisherName},
-        booksGenreId    => $params->{booksGenreId},
+#        author          => $params->{author},
+#        title           => $params->{title},
+#        size            => $params->{size},
+#        publisherName   => $params->{publisherName},
+#        booksGenreId    => $params->{booksGenreId},
         isbn            => $params->{isbn} || '9784094510522',
-        hits            => $opts->{hits},
-        page            => $opts->{page},
-        sort            => $opts->{sort}
+#        hits            => $opts->{hits},
+#        page            => $opts->{page},
+#        sort            => $opts->{sort}
     );
 
     my $ua = LWP::UserAgent->new;
