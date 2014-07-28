@@ -10,8 +10,7 @@ __PACKAGE__->load_plugin('Pager');
 
 sub get_books_by_user_id {
     my ( $self, $user_id ) = @_;
-    my @books = $self->search('books', +{ user_id => $user_id }, +{ order_by => 'isbn' });
-    return \@books;
+    return $self->search('books', +{ user_id => $user_id }, +{ order_by => 'isbn' });
 };
 
 sub register {
