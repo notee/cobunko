@@ -23,7 +23,7 @@ sub get_from_rakuten {
 #        size            => $params->{size},
 #        publisherName   => $params->{publisherName},
 #        booksGenreId    => $params->{booksGenreId},
-        isbn            => $params->{isbn} || '9784094510522',
+        isbn            => $params->{isbn},
 #        hits            => $opts->{hits},
 #        page            => $opts->{page},
 #        sort            => $opts->{sort}
