@@ -8,7 +8,7 @@ use URI;
 
 sub get_by_isbn {
     my ($self, $isbn) = @_;
-    my $rakuten_search_result = get_from_rakuten(+{isbn => $isbn});
+    my $rakuten_search_result = $self->get_from_rakuten(+{isbn => $isbn});
     return $rakuten_search_result->{Items}->[0]->{Item};
 }
 
