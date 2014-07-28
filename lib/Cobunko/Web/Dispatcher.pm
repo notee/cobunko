@@ -20,11 +20,12 @@ post '/search' => sub {
 
     my $user_id = $c->req->param('user_id');
 
-    my $books = $c->db->get_books_by_user_id($user_id);
+    my $books_iter = $c->db->get_books_by_user_id($user_id);
 
     my @result;
-    for (@$books) {
-        my $book = Cobunko::Model::Object::Book->get_by_isbn($_->isbn);
+    while (my $row = $books_iter->next) {
+        print $row->isbn;
+        my $book = Cobunko::Model::Object::Book->get_by_isbn($row->isbn);
         use Data::Dumper;
         print Dumper($book);
         $book->{url} = "http://www.isbnsearch.org/isbn/" . "$book->{isbn}"; #TODO:ここuninitialized valueってる
