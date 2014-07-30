@@ -21,17 +21,17 @@ post '/search' => sub {
     my $user_id = $c->req->param('user_id');
 
     my $books_iter = $c->db->get_books_by_user_id($user_id);
+    my $books_isbn = [];
 
-    my @result;
     while (my $row = $books_iter->next) {
-        print $row->isbn;
-        my $book = Cobunko::Model::Object::Book->get_by_isbn($row->isbn);
-        use Data::Dumper;
-        print Dumper($book);
-        $book->{url} = "http://www.isbnsearch.org/isbn/" . "$book->{isbn}"; #TODO:ここuninitialized valueってる
-        push @result, $book;
+        push @$books_isbn, $row->isbn;
     }
-    return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => \@result } );
+
+    my $books = Cobunko::Model::Object::Book->get_by_keywords($books_isbn);
+    for (@$books){
+        $_->{url} = "http://www.isbnsearch.org/isbn/" . "$_->{isbn}";
+    }
+    return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => $books } );
 };
 
 post '/register' => sub {
