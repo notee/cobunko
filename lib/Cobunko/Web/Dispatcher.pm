@@ -27,7 +27,7 @@ post '/book_detail' => sub {
     return $c->render(
         'cobunko/book_detail.tx',
         +{
-            book            => $book,
+            book            => $book_info,
             book_own_info   => $book_own_info,
         }
     );
