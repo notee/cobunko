@@ -13,11 +13,16 @@ sub get_books_by_user_id {
     return $self->search('books', +{ user_id => $user_id }, +{ order_by => 'isbn' });
 };
 
+sub get_book {
+    my ( $self, $user_id, $isbn ) = @_;
+    return $self->search('books', +{ user_id => $user_id, isbn => $isbn }, +{ order_by => 'isbn' });
+};
+
 sub register {
     my ( $self, $info ) = @_;
-    my ( $user_id, $title, $isbn ) = @{$info}{qw/user_id title isbn/};
+    my ( $user_id, $isbn ) = @{$info}{qw/user_id title isbn/};
     eval {
-        $self->insert('books', +{ user_id => $user_id, title => $title, isbn => $isbn });
+        $self->insert('books', +{ user_id => $user_id, isbn => $isbn });
     };
     if ($@) {
         return 0;

@@ -67,7 +67,6 @@
         <form method="post" action="/register">
             <ul>
             <li>your user_id : <input type="text" name="user_id"></li>
-            <li>title : <input type="text" name="title"></li>
             <li>ISBN : <input type="text" name="isbn"></li>
             </ul>
             <input type="submit" name="submit" value="そーしん">

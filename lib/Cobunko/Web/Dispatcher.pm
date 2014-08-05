@@ -15,6 +15,31 @@ any '/' => sub {
     });
 };
 
+post '/book_detail' => sub {
+    my $c = shift;
+
+    my $user_id = $c->req->param('user_id');
+    my $isbn    = $c->req->param('isbn');
+
+    my $book_own_info = $c->db->get_book($user_id, $isbn);
+    my $book_info     = Cobunko::Model::Object::Book->get_by_isbn($isbn);
+
+    return $c->render(
+        'cobunko/book_detail.tx',
+        +{
+            book            => $book,
+            book_own_info   => $book_own_info,
+        }
+    );
+};
+
+post '/lending' => sub {
+
+};
+
+post '/return' => sub {
+};
+
 post '/search' => sub {
     my $c = shift;
 
@@ -38,10 +63,9 @@ post '/register' => sub {
     my $c = shift;
 
     my $user_id = $c->req->param('user_id');
-    my $title  = $c->req->param('title');
     my $isbn   = $c->req->param('isbn');
 
-    my $is_register_success = $c->db->register(+{ user_id => $user_id, title => $title, isbn => $isbn });
+    my $is_register_success = $c->db->register(+{ user_id => $user_id, isbn => $isbn });
     return $c->render( 'cobunko/index.tx', +{ is_register_success => $is_register_success });
 };
 

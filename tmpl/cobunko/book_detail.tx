@@ -1,0 +1,69 @@
+: cascade "include/layout.tx"
+
+: override content -> {
+
+<h1 style="padding: 45px; text-align: center; font-size: 40px; line-height: 1; letter-spacing: -2px;">Book Detail</h1>
+
+<hr />
+
+<style>
+    .marketing .row {
+        margin-top: 20px;
+    }
+</style>
+
+: if $lending_success {
+        <h1 style="text-align: center;">
+            Lended.<br>
+            Loan period : hoge
+        </h1>
+: }
+
+: if $return_success {
+        <h1 style="text-align: center;">
+            Returned.<br>
+        </h1>
+: }
+
+
+<hr />
+
+<div class="row">
+    <h1 style="text-align: center;"><: $book.title :></h1>
+    <div>
+        <table>
+            <td>
+                <tr>title</tr>
+                <tr><: $book.title :></tr>
+            </td>
+            <td>
+                <tr>isbn</tr>
+                <tr><: $book.isbn :></tr>
+            </td>
+            <td>
+                <tr>author</tr>
+                <tr><: $book.author :></tr>
+            </td>
+        </table>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <form method="post" action="/lending">
+        <input type="submit" name="submit" value="貸出">
+    </form>
+    <form method="post" action="/return">
+        <input type="submit" name="submit" value="返却">
+    </form>
+</div>
+
+<hr />
+
+<div class="row">
+    <a href = "index.html">home</a>
+</div>
+
+<hr />
+: }

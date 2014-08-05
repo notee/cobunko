@@ -10,7 +10,7 @@ base_row_class 'Cobunko::DB::Row';
 table {
     name 'books';
     pk qw(user_id isbn);
-    columns qw(user_id title isbn);
+    columns qw(user_id isbn own_num lend_num);
 };
 
 1;

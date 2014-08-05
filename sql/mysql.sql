@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS books (
     user_id     INTEGER NOT NULL,
-    title       VARCHAR(255),
     isbn        BIGINT,
+    own_num     INT,
+    lend_num    INT,
     PRIMARY KEY (user_id, isbn)
 );
 
