@@ -37,7 +37,7 @@
                         <td><: $book.isbn :></td>
                         <td>
                             <form method="post" action="/book_detail">
-                                <input type="button" value="詳細">
+                                <input type="submit" name="submit" value="詳細">
                                 <input type="hidden" name="user_id" value="<: $user_id :>">
                                 <input type="hidden" name="isbn" value="<: $book.isbn :>">
                             </form>
