@@ -29,11 +29,19 @@
                     <td>title</td>
                     <td>isbn</td>
                     <td>link</td>
+                    <td>detail</td>
                 </tr>
                 : for $books->$book {
                     <tr>
                         <td><: $book.title :></td>
                         <td><: $book.isbn :></td>
+                        <td>
+                            <form method="post" action="/book_detail">
+                                <input type="button" value="詳細">
+                                <input type="hidden" name="user_id" value="<: $user_id >">
+                                <input type="hidden" name="isbn" value="<: $book.isbn >">
+                            </form>
+                        </td>
                         <td><a href= "<: $book.url :>">リンク</td>
                     </tr>
                 : }

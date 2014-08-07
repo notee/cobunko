@@ -34,7 +34,6 @@ post '/book_detail' => sub {
 };
 
 post '/lending' => sub {
-
 };
 
 post '/return' => sub {
@@ -56,7 +55,7 @@ post '/search' => sub {
     for (@$books){
         $_->{url} = "http://www.isbnsearch.org/isbn/" . "$_->{isbn}";
     }
-    return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => $books } );
+    return $c->render( 'cobunko/index.tx', +{ has_search_result => 1, books => $books, user_id => $user_id } );
 };
 
 post '/register' => sub {
